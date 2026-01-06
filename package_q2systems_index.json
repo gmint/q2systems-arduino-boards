@@ -7,12 +7,12 @@
         {
           "name": "Q2 Systems ESP32 Boards",
           "architecture": "esp32",
-          "version": "1.0.15",
+          "version": "1.0.16",
           "category": "Contributed",
-          "url": "https://github.com/gmint/q2systems-arduino-boards/releases/download/v1.0.15/q2systems-arduino-boards-1.0.15.zip",
-          "archiveFileName": "q2systems-arduino-boards-1.0.15.zip",
-          "checksum": "SHA-256:70834a03c81715bd338eb36b2c8c017c0484460df5ce638e69eb28780801b234",
-          "size": "818",
+          "url": "https://github.com/gmint/q2systems-arduino-boards/releases/download/v1.0.16/q2systems-arduino-boards-1.0.16.zip",
+          "archiveFileName": "q2systems-arduino-boards-1.0.16.zip",
+          "checksum": "SHA-256:d0cd8a5ee105ccd5b7556f32376e6dbd9b453217a529bef0ebd24d64ef81bd43",
+          "size": "1501",
           "boards": [
             { "name": "Q2 LED Lifter v5" }
           ]
