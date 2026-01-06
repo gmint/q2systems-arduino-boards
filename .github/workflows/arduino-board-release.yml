@@ -25,23 +25,24 @@ jobs:
       - name: Create ZIP archive
         run: |
           ZIP_NAME=q2systems-arduino-boards-${VERSION}.zip
-          SRC_DIR="hardware/q2systems/esp32/${VERSION}"
+          SRC_DIR="hardware/q2systems/esp32"
 
-          # Sanity-check expected platform files exist at the source directory
+          # Sanity-check expected platform files exist
           test -f "${SRC_DIR}/platform.txt"
           test -f "${SRC_DIR}/boards.txt"
 
-          # Create a ZIP whose root contains boards.txt/platform.txt/variants/... (no leading hardware/ path)
+          # Zip so archive root contains platform.txt, boards.txt, cores/, variants/
           (cd "${SRC_DIR}" && zip -r "${GITHUB_WORKSPACE}/${ZIP_NAME}" .)
 
           echo "ZIP_NAME=${ZIP_NAME}" >> $GITHUB_ENV
 
       - name: Compute checksum and size
         run: |
-          SHA=$(sha256sum "$ZIP_NAME" | awk '{print $1}')
+          SHA256=$(sha256sum "$ZIP_NAME" | awk '{print $1}')
           SIZE=$(stat -c%s "$ZIP_NAME")
-          echo "SHA256=$SHA" >> $GITHUB_ENV
-          echo "SIZE=$SIZE" >> $GITHUB_ENV
+
+          echo "SHA256=${SHA256}" >> $GITHUB_ENV
+          echo "SIZE=${SIZE}" >> $GITHUB_ENV
 
       - name: Update Boards Manager index
         run: |
