@@ -9,7 +9,7 @@ q2_led_lifter_v5.build.variant=q2_led_lifter_v5
 q2_led_lifter_v5.build.board=ESP32_DEV
 q2_led_lifter_v5.build.f_cpu=240000000L
 
-q2_led_lifter_v5.upload.tool=esptool_py
+q2_led_lifter_v5.upload.tool=esp32:esptool_py
 q2_led_lifter_v5.upload.speed=921600
 
 q2_led_lifter_v5.build.flash_size=8MB
@@ -19,5 +19,5 @@ q2_led_lifter_v5.build.flash_freq=40m
 q2_led_lifter_v5.build.psram=enabled
 q2_led_lifter_v5.build.defines=-DBOARD_HAS_PSRAM
 
-q2_led_lifter_v5.build.partitions=default_8MB
-q2_led_lifter_v5.build.filesystem=littlefs
+q2_led_lifter_v5.build.partitions=esp32:default_8MB
+q2_led_lifter_v5.build.filesystem=esp32:littlefs
