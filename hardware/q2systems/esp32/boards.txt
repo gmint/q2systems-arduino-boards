@@ -19,5 +19,5 @@ q2_led_lifter_v5.build.flash_freq=40m
 q2_led_lifter_v5.build.psram=enabled
 q2_led_lifter_v5.build.defines=-DBOARD_HAS_PSRAM
 
-q2_led_lifter_v5.build.partitions=default_8MB.csv
+q2_led_lifter_v5.build.partitions=default_8MB
 q2_led_lifter_v5.build.filesystem=littlefs
