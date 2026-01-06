@@ -1,5 +1,8 @@
 q2_led_lifter_v5.name=Q2 LED Lifter v5
 
+q2_led_lifter_v5.monitor_port.serial=cu.usbserial
+q2_led_lifter_v5.monitor_speed=115200
+
 q2_led_lifter_v5.build.mcu=esp32
 q2_led_lifter_v5.build.core=esp32
 q2_led_lifter_v5.build.variant=q2_led_lifter_v5
