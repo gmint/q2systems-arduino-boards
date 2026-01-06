@@ -41,6 +41,9 @@ jobs:
           sed -i "s|\"archiveFileName\": \".*\"|\"archiveFileName\": \"${ZIP_NAME}\"|" package_q2systems_index.json
           sed -i "s|\"checksum\": \".*\"|\"checksum\": \"SHA-256:${SHA256}\"|" package_q2systems_index.json
           sed -i "s|\"size\": \".*\"|\"size\": \"${SIZE}\"|" package_q2systems_index.json
+          REPO="https://github.com/${GITHUB_REPOSITORY}"
+          DOWNLOAD_URL="${REPO}/releases/download/v${VERSION}/${ZIP_NAME}"
+          sed -i "s|\"url\": \".*\"|\"url\": \"${DOWNLOAD_URL}\"|" package_q2systems_index.json
 
       - name: Upload release asset
         uses: actions/upload-release-asset@v1
