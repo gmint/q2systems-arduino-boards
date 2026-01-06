@@ -1,0 +1,23 @@
+{
+  "packages": [
+    {
+      "name": "q2systems",
+      "maintainer": "Q Squared Systems",
+      "platforms": [
+        {
+          "name": "Q2 Systems ESP32 Boards",
+          "architecture": "esp32",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "url": "REPLACED_BY_GITHUB_ACTIONS",
+          "archiveFileName": "REPLACED_BY_GITHUB_ACTIONS",
+          "checksum": "REPLACED_BY_GITHUB_ACTIONS",
+          "size": "REPLACED_BY_GITHUB_ACTIONS",
+          "boards": [
+            { "name": "Q2 LED Lifter v5" }
+          ]
+        }
+      ]
+    }
+  ]
+}
