@@ -1,0 +1,5 @@
+cat <<EOF >> .gitignore
+# macOS junk
+.DS_Store
+**/.DS_Store
+EOF
