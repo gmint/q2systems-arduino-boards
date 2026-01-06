@@ -1,0 +1,51 @@
+name: Arduino Board Package Release
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Determine version from tag
+        run: |
+          echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+
+      - name: Create ZIP archive
+        run: |
+          ZIP_NAME=q2systems-arduino-boards-${VERSION}.zip
+          zip -r "$ZIP_NAME" hardware
+          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+
+      - name: Compute checksum and size
+        run: |
+          SHA=$(sha256sum "$ZIP_NAME" | awk '{print $1}')
+          SIZE=$(stat -c%s "$ZIP_NAME")
+          echo "SHA256=$SHA" >> $GITHUB_ENV
+          echo "SIZE=$SIZE" >> $GITHUB_ENV
+
+      - name: Update Boards Manager index
+        run: |
+          sed -i "s|\"version\": \".*\"|\"version\": \"${VERSION}\"|" package_q2systems_index.json
+          sed -i "s|\"archiveFileName\": \".*\"|\"archiveFileName\": \"${ZIP_NAME}\"|" package_q2systems_index.json
+          sed -i "s|\"checksum\": \".*\"|\"checksum\": \"SHA-256:${SHA256}\"|" package_q2systems_index.json
+          sed -i "s|\"size\": \".*\"|\"size\": \"${SIZE}\"|" package_q2systems_index.json
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            ${{ env.ZIP_NAME }}
+
+      - name: Commit updated index
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add package_q2systems_index.json
+          git commit -m "Update Boards Manager index for v${VERSION}"
+          git push
