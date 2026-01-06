@@ -25,8 +25,16 @@ jobs:
       - name: Create ZIP archive
         run: |
           ZIP_NAME=q2systems-arduino-boards-${VERSION}.zip
-          zip -r "$ZIP_NAME" hardware
-          echo "ZIP_NAME=$ZIP_NAME" >> $GITHUB_ENV
+          SRC_DIR="hardware/q2systems/esp32/${VERSION}"
+
+          # Sanity-check expected platform files exist at the source directory
+          test -f "${SRC_DIR}/platform.txt"
+          test -f "${SRC_DIR}/boards.txt"
+
+          # Create a ZIP whose root contains boards.txt/platform.txt/variants/... (no leading hardware/ path)
+          (cd "${SRC_DIR}" && zip -r "${GITHUB_WORKSPACE}/${ZIP_NAME}" .)
+
+          echo "ZIP_NAME=${ZIP_NAME}" >> $GITHUB_ENV
 
       - name: Compute checksum and size
         run: |
