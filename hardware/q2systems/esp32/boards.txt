@@ -4,7 +4,7 @@ q2_led_lifter_v5.monitor_port.serial=cu.usbserial
 q2_led_lifter_v5.monitor_speed=115200
 
 q2_led_lifter_v5.build.mcu=esp32
-q2_led_lifter_v5.build.core=esp32
+q2_led_lifter_v5.build.core=esp32:esp32
 q2_led_lifter_v5.build.variant=q2_led_lifter_v5
 q2_led_lifter_v5.build.board=ESP32_DEV
 q2_led_lifter_v5.build.f_cpu=240000000L

@@ -1,4 +1,4 @@
 name=Q2 Systems ESP32 Platform
 version=1.0.0
 
-build.core=esp32
+build.core=esp32:esp32
