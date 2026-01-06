@@ -6,6 +6,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 jobs:
   build:
@@ -41,9 +42,12 @@ jobs:
 
       - name: Upload release asset
         uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           files: |
             ${{ env.ZIP_NAME }}
+          fail_on_unmatched_files: true
 
       - name: Commit updated index
         run: |
