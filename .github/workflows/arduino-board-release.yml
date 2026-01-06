@@ -25,14 +25,15 @@ jobs:
       - name: Create ZIP archive
         run: |
           ZIP_NAME=q2systems-arduino-boards-${VERSION}.zip
-          SRC_DIR="hardware/q2systems/esp32"
+          SRC_DIR="hardware/q2systems"
 
           # Sanity-check expected platform files exist
-          test -f "${SRC_DIR}/platform.txt"
-          test -f "${SRC_DIR}/boards.txt"
+          test -f "${SRC_DIR}/esp32/platform.txt"
+          test -f "${SRC_DIR}/esp32/boards.txt"
 
-          # Zip so archive root contains platform.txt, boards.txt, cores/, variants/
-          (cd "${SRC_DIR}" && zip -r "${GITHUB_WORKSPACE}/${ZIP_NAME}" .)
+          # Boards Manager requires files to be inside a single top-level folder in the archive.
+          # Zip the "esp32" directory so the archive root contains: esp32/platform.txt, esp32/boards.txt, esp32/variants/...
+          (cd "${SRC_DIR}" && zip -r "${GITHUB_WORKSPACE}/${ZIP_NAME}" esp32)
 
           echo "ZIP_NAME=${ZIP_NAME}" >> $GITHUB_ENV
 
